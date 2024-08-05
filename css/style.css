@@ -77,3 +77,111 @@ input[name="authModalToggle"] {
 #authModalToggleRegister:checked ~ #registerModal {
     display: block;
 }
+
+/* Up comming 축제 섹션 */
+input[name="upcommingSlideToggle"] {
+    display: none;
+}
+
+#upcommingSlide {
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    overflow: hidden;
+}
+
+#upcommingSlide .slide {
+    width: 100%;
+    height: 80vh;
+    position: relative;
+}
+
+#upcommingSlide .slide img {
+    width: 100vw;
+    height: 100%;
+}
+
+#upcommingSlide .slide p {
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(255, 255, 255, 0.8);
+    text-align: center;
+}
+
+#upcommingSlide .slide label {
+    position: absolute;
+    top: 40%;
+    transform: translate(-50%, -50%);
+    font-size: 48px;
+    color: white;
+    font-weight: bold;
+    background-color: rgba(0, 0, 0, 0.4);
+    text-align: center;
+}
+
+#upcommingSlide .slide label.left {
+    left: 5%;
+}
+
+#upcommingSlide .slide label.right {
+    right: 5%;
+}
+
+@keyframes slideAnimation1 {
+    0%, 30% {
+        transform: translateX(0);
+    }
+    33%, 63% {
+        transform: translateX(-100%);
+    }
+    66%, 96% {
+        transform: translateX(-200%);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideAnimation2 {
+    0%, 30% {
+        transform: translateX(-100%);
+    }
+    33%, 63% {
+        transform: translateX(-200%);
+    }
+    66%, 96% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+@keyframes slideAnimation3 {
+    0%, 30% {
+        transform: translateX(-200%);
+    }
+    33%, 63% {
+        transform: translateX(0);
+    }
+    66%, 96% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(-200%);
+    }
+}
+
+#upcommingSlideToggle1:checked ~ #upcommingSlide .slide {
+    animation: slideAnimation1 12s infinite;
+}
+
+#upcommingSlideToggle2:checked ~ #upcommingSlide .slide {
+    animation: slideAnimation2 12s infinite;
+}
+
+#upcommingSlideToggle3:checked ~ #upcommingSlide .slide {
+    animation: slideAnimation3 12s infinite;
+}
