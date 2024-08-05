@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./2024%20제59회%20전국기능경기대회%20과제출제(광주)_2/bootstrap-5.3.3-dist/css/bootstrap.css">
+    <title>Document</title>
+</head>
+<body id="top">
+<header>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary navbar bg-dark border-bottom border-body ">
+        <input type="radio" name="headerToggle" id="headerToggleOpen">
+        <input type="radio" name="headerToggle" id="headerToggleClose" checked>
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#"><img src="./logo.png" alt="로고 이미지" width="100px"></a>
+            <label for="headerToggleOpen" id="headerToggleOpenBtn" class="navbar-toggler" type="button">
+                <span class="navbar-toggler-icon"></span>
+            </label>
+            <label for="headerToggleClose" id="headerToggleCloseBtn" class="navbar-toggler" type="button">
+                <span class="navbar-toggler-icon"></span>
+            </label>
+            <div class="navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Up comming 축제</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">BEST 축제</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">축제 찾기</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">이달의 축제</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">마이페이지</a>
+                    </li>
+                    <li class="nav-item nav-link active">
+                        <label for="authModalToggleLogin">로그인</label>
+                    </li>
+                    <li class="nav-item nav-link active">
+                        <label for="authModalToggleRegister">회원가입</label>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<!-- 로그인&회원가입 모달 토글 -->
+<input type="radio" name="authModalToggle" id="authModalToggleLogin">
+<input type="radio" name="authModalToggle" id="authModalToggleRegister">
+<input type="radio" name="authModalToggle" id="authModalToggleClose" checked>
+<!-- 로그인 모달 -->
+<div class="modal fade show" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-modal="true"
+     role="dialog">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="loginModalLabel">로그인</h1>
+                <label for="authModalToggleClose" class="btn-close"></label>
+            </div>
+            <form>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="loginId" class="form-label">아이디</label>
+                        <input type="text" class="form-control" id="loginId" name="username">
+                    </div>
+                    <div class="mb-3">
+                        <label for="loginPassword" class="form-label">비밀번호</label>
+                        <input type="password" class="form-control" id="loginPassword" name="password">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary">로그인</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- 회원가입 모달 -->
+</div>
+<div class="modal fade show" id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel" aria-modal="true"
+     role="dialog">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="registerModalLabel">로그인</h1>
+                <label for="authModalToggleClose" class="btn-close"></label>
+            </div>
+            <form>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="registerName" class="form-label">이름</label>
+                        <input type="text" class="form-control" id="registerName" name="username">
+                    </div>
+                    <div class="mb-3">
+                        <label for="registerId" class="form-label">아이디</label>
+                        <input type="text" class="form-control" id="registerId" name="username">
+                    </div>
+                    <div class="mb-3">
+                        <label for="registerPassword" class="form-label">비밀번호</label>
+                        <input type="password" class="form-control" id="registerPassword" name="password">
+                    </div>
+                    <div class="mb-3">
+                        <label for="registerPassword2" class="form-label">비밀번호 확인</label>
+                        <input type="password" class="form-control" id="registerPassword2" name="password">
+                    </div>
+                    <div class="mb-3">
+                        <label for="registerCaptcha" class="form-label">당신은 로봇이 아닌 사람입니까?</label>
+                        <img src="./captcha.png" alt="캡차 이미지">
+                        <input type="text" class="form-control" id="registerCaptcha" name="captcha">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary">회원가입</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<!-- TOP 버튼 -->
+<a href="#top">
+    <div id="topBtn">↑</div>
+</a>
+
+</body>
+<!--<script src="./2024%20제59회%20전국기능경기대회%20과제출제(광주)_2/bootstrap-5.3.3-dist/js/bootstrap.js"></script>-->
+</html>
