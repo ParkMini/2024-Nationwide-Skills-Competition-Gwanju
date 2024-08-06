@@ -187,38 +187,63 @@ input[name="upcommingSlideToggle"] {
 }
 
 /* BEST 축제 섹션 */
-#festivalOfTheMonth {
+#bestFestival {
     display: flex;
     justify-content: space-around;
 }
 
-#festivalOfTheMonthTitle {
+#bestFestivalTitle {
     text-align: center;
     margin-top: 100px;
 }
 
-input[name="festivalOfTheMonthToggle"],
+input[name="bestFestivalToggle"],
 .서울드럼페스티벌, .서울뮤직페스티벌, .서울국악축제, .서울페스타2024, .서울바비큐페스티벌 {
     display: none;
 }
 
-#festivalOfTheMonthToggleClose:not(:checked) ~ #festivalOfTheMonthModal {
+#bestFestivalToggleClose:not(:checked) ~ #bestFestivalModal {
     display: block;
 }
 
-#서울드럼페스티벌토글:checked ~ #festivalOfTheMonthModal .서울드럼페스티벌,
-#서울뮤직페스티벌토글:checked ~ #festivalOfTheMonthModal .서울뮤직페스티벌,
-#서울국악축제토글:checked ~ #festivalOfTheMonthModal .서울국악축제,
-#서울페스타2024토글:checked ~ #festivalOfTheMonthModal .서울페스타2024,
-#서울바비큐페스티벌토글:checked ~ #festivalOfTheMonthModal .서울바비큐페스티벌 {
+#서울드럼페스티벌토글:checked ~ #bestFestivalModal .서울드럼페스티벌,
+#서울뮤직페스티벌토글:checked ~ #bestFestivalModal .서울뮤직페스티벌,
+#서울국악축제토글:checked ~ #bestFestivalModal .서울국악축제,
+#서울페스타2024토글:checked ~ #bestFestivalModal .서울페스타2024,
+#서울바비큐페스티벌토글:checked ~ #bestFestivalModal .서울바비큐페스티벌 {
     display: block;
 }
 
-#서울드럼페스티벌토글:checked ~ #festivalOfTheMonthModal #totalVisitorTable .서울드럼페스티벌,
-#서울뮤직페스티벌토글:checked ~ #festivalOfTheMonthModal #totalVisitorTable .서울뮤직페스티벌,
-#서울국악축제토글:checked ~ #festivalOfTheMonthModal #totalVisitorTable .서울국악축제,
-#서울페스타2024토글:checked ~ #festivalOfTheMonthModal #totalVisitorTable .서울페스타2024,
-#서울바비큐페스티벌토글:checked ~ #festivalOfTheMonthModal #totalVisitorTable .서울바비큐페스티벌 {
+#서울드럼페스티벌토글:checked ~ #bestFestivalModal #totalVisitorTable .서울드럼페스티벌,
+#서울뮤직페스티벌토글:checked ~ #bestFestivalModal #totalVisitorTable .서울뮤직페스티벌,
+#서울국악축제토글:checked ~ #bestFestivalModal #totalVisitorTable .서울국악축제,
+#서울페스타2024토글:checked ~ #bestFestivalModal #totalVisitorTable .서울페스타2024,
+#서울바비큐페스티벌토글:checked ~ #bestFestivalModal #totalVisitorTable .서울바비큐페스티벌 {
     display: table-row;
 }
 
+/* 이달의 축제 영역 */
+#festivalOfTheMonth #calendar {
+    border-collapse: collapse;
+}
+
+#festivalOfTheMonth #calendar td {
+    padding: 40px 10px;
+    border: 1px solid #ccc;
+    position: relative;
+    width: 200px;
+    height: 100px;
+}
+
+#festivalOfTheMonth #calendar td .day {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+}
+
+#festivalOfTheMonth #calendar td .festival {
+    margin: 3px 0;
+    width: 180px;
+    overflow: hidden;
+    white-space: nowrap;
+}

@@ -150,15 +150,15 @@
     </div>
 </div>
 
-<!-- 이달의 축제 섹션 -->
-<input type="radio" name="festivalOfTheMonthToggle" id="서울드럼페스티벌토글">
-<input type="radio" name="festivalOfTheMonthToggle" id="서울뮤직페스티벌토글">
-<input type="radio" name="festivalOfTheMonthToggle" id="서울국악축제토글">
-<input type="radio" name="festivalOfTheMonthToggle" id="서울페스타2024토글">
-<input type="radio" name="festivalOfTheMonthToggle" id="서울바비큐페스티벌토글">
-<input type="radio" name="festivalOfTheMonthToggle" id="festivalOfTheMonthToggleClose" checked>
-<h1 id="festivalOfTheMonthTitle">BEST 축제 섹션</h1>
-<div id="festivalOfTheMonth">
+<!-- BEST 축제 섹션 -->
+<input type="radio" name="bestFestivalToggle" id="서울드럼페스티벌토글">
+<input type="radio" name="bestFestivalToggle" id="서울뮤직페스티벌토글">
+<input type="radio" name="bestFestivalToggle" id="서울국악축제토글">
+<input type="radio" name="bestFestivalToggle" id="서울페스타2024토글">
+<input type="radio" name="bestFestivalToggle" id="서울바비큐페스티벌토글">
+<input type="radio" name="bestFestivalToggle" id="bestFestivalToggleClose" checked>
+<h1 id="bestFestivalTitle">BEST 축제 섹션</h1>
+<div id="bestFestival">
     <div class="card" style="width: 18rem;">
         <img src="./2024%20제59회%20전국기능경기대회%20과제출제(광주)_2/선수제공파일/images/CK_cm08188656_l.jpg" class="card-img-top"
              alt="이미지">
@@ -206,7 +206,7 @@
     </div>
 </div>
 
-<div class="modal fade show" id="festivalOfTheMonthModal" tabindex="-1" aria-labelledby="festivalOfTheMonthModalLabel"
+<div class="modal fade show" id="bestFestivalModal" tabindex="-1" aria-labelledby="bestFestivalModalLabel"
      aria-modal="true"
      role="dialog">
     <div class="modal-dialog modal-dialog-centered">
@@ -217,7 +217,7 @@
                 <h1 class="modal-title fs-5 서울국악축제">서울국악축제</h1>
                 <h1 class="modal-title fs-5 서울페스타2024">서울페스타2024</h1>
                 <h1 class="modal-title fs-5 서울바비큐페스티벌">서울바비큐페스티벌</h1>
-                <label for="festivalOfTheMonthToggleClose" class="btn-close"></label>
+                <label for="bestFestivalToggleClose" class="btn-close"></label>
             </div>
             <div class="modal-body">
                 <img src="./2024%20제59회%20전국기능경기대회%20과제출제(광주)_2/선수제공파일/images/CK_cm08188656_l.jpg" alt="이미지"
@@ -334,12 +334,13 @@
                 <button type="button" class="btn btn-success">좋아요</button>
                 <button type="button" class="btn btn-danger">싫어요</button>
                 <button type="button" class="btn btn-primary">내 여행 일정에 추가</button>
-                <label for="festivalOfTheMonthToggleClose" class="btn btn-secondary">닫기</label>
+                <label for="bestFestivalToggleClose" class="btn btn-secondary">닫기</label>
             </div>
         </div>
     </div>
 </div>
 
+<!-- 축제 찾기 섹션 -->
 <div id="findFestival" class="mt-5 text-center">
     <h1 class="text-center">축제 찾기</h1>
     <form class="d-flex w-25 m-auto" role="search">
@@ -421,7 +422,76 @@
     </table>
     <button class="btn btn-secondary">이전</button>
     <button class="btn btn-secondary">다음</button>
+</div>
 
+<hr class="m-5">
+
+<!-- 이달의 축제 영역 -->
+<div id="festivalOfTheMonth" class="text-center mt-5">
+    <h1>이달의 축제</h1>
+    <h2 id="calendar_month">2024년 8월</h2>
+    <table id="calendar" class="m-auto table w-75">
+        <tr>
+            <th>일</th>
+            <th>월</th>
+            <th>화</th>
+            <th>수</th>
+            <th>목</th>
+            <th>금</th>
+            <th>토</th>
+        </tr>
+        <tr>
+            <td><span class="day"></span></td>
+            <td><span class="day"></span></td>
+            <td><span class="day"></span></td>
+            <td><span class="day"></span></td>
+            <td><span class="day">1</span></td>
+            <td><span class="day">2</span></td>
+            <td><span class="day">3</span></td>
+        </tr>
+        <tr>
+            <td><span class="day">4</span></td>
+            <td><span class="day">5</span></td>
+            <td><span class="day">6</span></td>
+            <td><span class="day">7</span></td>
+            <td><span class="day">8</span></td>
+            <td><span class="day">9</span></td>
+            <td><span class="day">10</span></td>
+        </tr>
+        <tr>
+            <td><span class="day">11</span></td>
+            <td><span class="day">12</span>
+                <p class="festival bg-primary text-white">제3회 여주선비장터축제</p>
+                <p class="festival bg-primary text-white">제8회여주흥천남한강벚꽃축제</p>
+            <td><span class="day">13</span></td>
+            <td><span class="day">14</span></td>
+            <td><span class="day">15</span></td>
+            <td><span class="day">16</span></td>
+            <td><span class="day">17</span></td>
+        </tr>
+        <tr>
+            <td><span class="day">18</span></td>
+            <td><span class="day">19</span>
+                <p class="festival bg-primary text-white">제24회 동두천 락 페스티벌</p>
+            </td>
+            <td><span class="day">20</span></td>
+            <td><span class="day">21</span></td>
+            <td><span class="day">22</span></td>
+            <td><span class="day">23</span></td>
+            <td><span class="day">24</span></td>
+        </tr>
+        <tr>
+            <td><span class="day">25</span></td>
+            <td><span class="day">26</span></td>
+            <td><span class="day">27</span></td>
+            <td><span class="day">28</span>
+                <p class="festival bg-primary text-white">제24회 동두천 락 페스티벌</p>
+            </td>
+            <td><span class="day">29</span></td>
+            <td><span class="day">30</span></td>
+            <td><span class="day">31</span></td>
+        </tr>
+    </table>
 </div>
 
 <!-- TOP 버튼 -->
