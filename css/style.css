@@ -85,9 +85,9 @@ input[name="upcommingSlideToggle"] {
 
 #upcommingSlide {
     width: 80%;
-    margin: 0 auto;
     display: flex;
     overflow: hidden;
+    margin: 30px auto 0;
 }
 
 #upcommingSlide .slide {
@@ -185,3 +185,40 @@ input[name="upcommingSlideToggle"] {
 #upcommingSlideToggle3:checked ~ #upcommingSlide .slide {
     animation: slideAnimation3 12s infinite;
 }
+
+/* BEST 축제 섹션 */
+#festivalOfTheMonth {
+    display: flex;
+    justify-content: space-around;
+}
+
+#festivalOfTheMonthTitle {
+    text-align: center;
+    margin-top: 100px;
+}
+
+input[name="festivalOfTheMonthToggle"],
+.서울드럼페스티벌, .서울뮤직페스티벌, .서울국악축제, .서울페스타2024, .서울바비큐페스티벌 {
+    display: none;
+}
+
+#festivalOfTheMonthToggleClose:not(:checked) ~ #festivalOfTheMonthModal {
+    display: block;
+}
+
+#서울드럼페스티벌토글:checked ~ #festivalOfTheMonthModal .서울드럼페스티벌,
+#서울뮤직페스티벌토글:checked ~ #festivalOfTheMonthModal .서울뮤직페스티벌,
+#서울국악축제토글:checked ~ #festivalOfTheMonthModal .서울국악축제,
+#서울페스타2024토글:checked ~ #festivalOfTheMonthModal .서울페스타2024,
+#서울바비큐페스티벌토글:checked ~ #festivalOfTheMonthModal .서울바비큐페스티벌 {
+    display: block;
+}
+
+#서울드럼페스티벌토글:checked ~ #festivalOfTheMonthModal #totalVisitorTable .서울드럼페스티벌,
+#서울뮤직페스티벌토글:checked ~ #festivalOfTheMonthModal #totalVisitorTable .서울뮤직페스티벌,
+#서울국악축제토글:checked ~ #festivalOfTheMonthModal #totalVisitorTable .서울국악축제,
+#서울페스타2024토글:checked ~ #festivalOfTheMonthModal #totalVisitorTable .서울페스타2024,
+#서울바비큐페스티벌토글:checked ~ #festivalOfTheMonthModal #totalVisitorTable .서울바비큐페스티벌 {
+    display: table-row;
+}
+
