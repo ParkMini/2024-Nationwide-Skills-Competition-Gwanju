@@ -112,23 +112,6 @@ input[name="authModalToggle"] {
     margin-top: 100px;
 }
 
-input[name="bestFestivalToggle"],
-.서울드럼페스티벌, .서울뮤직페스티벌, .서울국악축제, .서울페스타2024, .서울바비큐페스티벌 {
-    display: none;
-}
-
-#bestFestivalToggleClose:not(:checked) ~ #bestFestivalModal {
-    display: block;
-}
-
-#서울드럼페스티벌토글:checked ~ #bestFestivalModal .서울드럼페스티벌,
-#서울뮤직페스티벌토글:checked ~ #bestFestivalModal .서울뮤직페스티벌,
-#서울국악축제토글:checked ~ #bestFestivalModal .서울국악축제,
-#서울페스타2024토글:checked ~ #bestFestivalModal .서울페스타2024,
-#서울바비큐페스티벌토글:checked ~ #bestFestivalModal .서울바비큐페스티벌 {
-    display: block;
-}
-
 #서울드럼페스티벌토글:checked ~ #bestFestivalModal #totalVisitorTable .서울드럼페스티벌,
 #서울뮤직페스티벌토글:checked ~ #bestFestivalModal #totalVisitorTable .서울뮤직페스티벌,
 #서울국악축제토글:checked ~ #bestFestivalModal #totalVisitorTable .서울국악축제,
