@@ -118,3 +118,112 @@ const showBestModal = async (id) => {
     `);
     $('#bestModal').modal('show');
 }
+
+const findFestivalInit = async () => {
+    const festivals = await fetchFestival();
+    const festivalSidoElem = $("#festivalSido");
+    const festivalGunguElem = $("#festivalGungu");
+    const festivalType = $("#festivalType");
+    const festivalStartDate = $("#festivalStartDate");
+    const sido = [], gungu = [], type = [];
+
+    festivals.forEach(festival => {
+        festival.sido = festival.sido.replace(" ", "");
+        festival.gungu = festival.gungu.replace(" ", "");
+
+        if (!sido.includes(festival.sido)) {
+            sido.push(festival.sido);
+            festivalSidoElem.append(new Option(festival.sido, festival.sido));
+        }
+
+        if (!gungu.includes(festival.gungu) && festival.gungu !== "") {
+            gungu.push(festival.gungu);
+            festivalGunguElem.append(new Option(festival.gungu, festival.gungu));
+        }
+
+        if (!type.includes(festival.type)) {
+            type.push(festival.type);
+            festivalType.append(new Option(festival.type, festival.type));
+        }
+    });
+}
+
+const dateWithHyphenConverter = (target) => {
+    target.value = target.value.replace(/\D/g, '').replace(/(\d{4})(\d{2})(\d{2})/, '$1-$2-$3');
+}
+
+let currentPage = 1;
+const itemsPerPage = 5;
+
+const displayFestivals = (festivals, page) => {
+    const startIndex = (page - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    const paginatedFestivals = festivals.slice(startIndex, endIndex);
+
+    const tableBody = $("table tbody");
+    tableBody.empty();
+
+    paginatedFestivals.forEach(festival => {
+        tableBody.append(`
+            <tr>
+                <td>${festival.sido}</td>
+                <td>${festival.gungu}</td>
+                <td>${festival.title}</td>
+                <td>${festival.type}</td>
+                <td>${festival.startdate}</td>
+                <td><button class="btn btn-primary" onclick="showBestModal(${festival.id})">더보기</button></td>
+            </tr>
+        `);
+    });
+
+    // 이전, 다음 버튼 활성화/비활성화
+    if (startIndex > 0) {
+        $(".btn-previous").prop("disabled", false);
+    } else {
+        $(".btn-previous").prop("disabled", true);
+    }
+
+    if (endIndex < festivals.length) {
+        $(".btn-next").prop("disabled", false);
+    } else {
+        $(".btn-next").prop("disabled", true);
+    }
+}
+
+const loadFestivals = async () => {
+    let festivals = await fetchFestival();
+    const festivalSido = $("#festivalSido").val();
+    const festivalGungu = $("#festivalGungu").val();
+    const festivalType = $("#festivalType").val();
+    const festivalStartDate = $("#festivalStartDate").val() || today;
+
+    // 조건에 맞는 축제 필터링
+    festivals = festivals.filter(festival => {
+        return (!festivalSido || festival.sido === festivalSido) &&
+            (!festivalGungu || festival.gungu === festivalGungu) &&
+            (!festivalType || festival.type === festivalType) &&
+            festival.startdate >= festivalStartDate;
+    });
+
+    // 날짜 순으로 정렬
+    festivals.sort((a, b) => new Date(a.startdate) - new Date(b.startdate));
+
+    // 첫 페이지의 축제 목록을 표시
+    displayFestivals(festivals, currentPage);
+
+    // 이전 버튼 클릭 이벤트
+    $(".btn-previous").off("click").on("click", () => {
+        if (currentPage > 1) {
+            currentPage--;
+            displayFestivals(festivals, currentPage);
+        }
+    });
+
+    // 다음 버튼 클릭 이벤트
+    $(".btn-next").off("click").on("click", () => {
+        if ((currentPage * itemsPerPage) < festivals.length) {
+            currentPage++;
+            displayFestivals(festivals, currentPage);
+        }
+    });
+}

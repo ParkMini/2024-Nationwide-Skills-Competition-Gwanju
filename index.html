@@ -173,18 +173,26 @@
 <!-- 축제 찾기 섹션 -->
 <div id="findFestival" class="mt-5 text-center">
     <h1 class="text-center">축제 찾기</h1>
-    <form class="d-flex w-25 m-auto" role="search">
+    <div class="d-flex w-75 m-auto" role="search">
         <div class="dropdown">
-            <select class="btn btn-secondary dropdown-toggle">
-                <option value="광역자치 단체명">광역자치 단체명</option>
-                <option value="기초자치 단체명">기초자치 단체명</option>
-                <option value="축제유형">축제유형</option>
-                <option value="축제 시작일">축제 시작일</option>
+            <select id="festivalSido" class="btn btn-secondary dropdown-toggle">
+                <option value="">광역자치 단체명</option>
             </select>
         </div>
-        <input class="form-control me-2" type="search" placeholder="축제 명" aria-label="Search">
-        <button class="btn btn-outline-success w-25" type="submit">검색</button>
-    </form>
+        <div class="dropdown">
+            <select id="festivalGungu" class="btn btn-secondary dropdown-toggle">
+                <option value="">기초자치 단체명</option>
+            </select>
+        </div>
+        <div class="dropdown">
+            <select id="festivalType" class="btn btn-secondary dropdown-toggle">
+                <option value="">축제유형</option>
+            </select>
+        </div>
+        <input type="text" id="festivalStartDate" class="form-control" placeholder="축제 시작일" oninput="dateWithHyphenConverter(this)" maxlength="10">
+        <input id="festivalTitle" class="form-control me-2" type="search" placeholder="축제 명" aria-label="Search">
+        <button class="btn btn-outline-success w-25" type="submit" onclick="loadFestivals()">검색</button>
+    </div>
     <img src="./2024%20제59회%20전국기능경기대회%20과제출제(광주)_2/선수제공파일/maps/kr.svg" alt="남한" class="w-25">
     <table class="table w-50 m-auto">
         <thead>
@@ -198,56 +206,6 @@
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <td>경기</td>
-            <td>포천시</td>
-            <td>백운계곡 동장군 축제</td>
-            <td>생태자연</td>
-            <td>2024-11-25</td>
-            <td>
-                <button class="btn btn-primary">더보기</button>
-            </td>
-        </tr>
-        <tr>
-            <td>경기</td>
-            <td>포천시</td>
-            <td>백운계곡 동장군 축제</td>
-            <td>생태자연</td>
-            <td>2024-11-25</td>
-            <td>
-                <button class="btn btn-primary">더보기</button>
-            </td>
-        </tr>
-        <tr>
-            <td>경기</td>
-            <td>포천시</td>
-            <td>백운계곡 동장군 축제</td>
-            <td>생태자연</td>
-            <td>2024-11-25</td>
-            <td>
-                <button class="btn btn-primary">더보기</button>
-            </td>
-        </tr>
-        <tr>
-            <td>경기</td>
-            <td>포천시</td>
-            <td>백운계곡 동장군 축제</td>
-            <td>생태자연</td>
-            <td>2024-11-25</td>
-            <td>
-                <button class="btn btn-primary">더보기</button>
-            </td>
-        </tr>
-        <tr>
-            <td>경기</td>
-            <td>포천시</td>
-            <td>백운계곡 동장군 축제</td>
-            <td>생태자연</td>
-            <td>2024-11-25</td>
-            <td>
-                <button class="btn btn-primary">더보기</button>
-            </td>
-        </tr>
         </tbody>
     </table>
     <button class="btn btn-secondary">이전</button>
@@ -277,7 +235,7 @@
             <td><span class="day"></span></td>
             <td><span class="day">1</span></td>
             <td><span class="day">2</span></td>
-            <td><span class="day">3</td>
+            <td><span class="day">3</span></td>
         </tr>
         <tr>
             <td><span class="day">4</span></td>
@@ -293,6 +251,7 @@
             <td><span class="day">12</span>
                 <p class="festival bg-primary text-white">제3회 여주선비장터축제</p>
                 <p class="festival bg-primary text-white">제8회여주흥천남한강벚꽃축제</p>
+            </td>
             <td><span class="day">13</span></td>
             <td><span class="day">14</span></td>
             <td><span class="day">15</span></td>
@@ -344,9 +303,10 @@
 <script src="./2024%20제59회%20전국기능경기대회%20과제출제(광주)_2/bootstrap-5.3.3-dist/js/bootstrap.js"></script>
 <script src="./js/script.js"></script>
 <script>
-    $(document).ready(function() {
+    $(document).ready(function () {
         upcommingSlide();
         bestFestival();
+        findFestivalInit();
     });
 </script>
 </html>
