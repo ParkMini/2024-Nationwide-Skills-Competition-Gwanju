@@ -1,21 +1,25 @@
+// 축제 데이터를 가져오는 함수
 const fetchFestival = async () => {
     const response = await fetch("./B_Module/api/festivals.json");
     return await response.json();
-}
+};
 
-// 특정 날짜를 기준으로 가까운 축제 목록
+// 특정 날짜를 기준으로 가까운 축제 목록을 가져오는 함수
 const getFestivalFromStartDate = async (startDate) => {
     const festivals = await fetchFestival();
     const upcomingFestivals = festivals.filter(festival => festival.startdate >= startDate);
     upcomingFestivals.sort((a, b) => new Date(a.startdate) - new Date(b.startdate));
     return upcomingFestivals;
-}
+};
 
 /** 전역 변수 */
 // 오늘 날짜
 const today = new Date().toISOString().split("T")[0];
+let currentPage = 1;
+const itemsPerPage = 5;
+let previousRegion = null; // 이전에 클릭된 지역을 저장할 변수
 
-// Up comming 축제 섹션
+// Upcomming 축제 섹션을 설정하는 함수
 const upcommingSlide = async () => {
     const festivals = await getFestivalFromStartDate(today);
     const upcommingSlideElem = $("#upcommingSlide .carousel-inner");
@@ -26,7 +30,7 @@ const upcommingSlide = async () => {
     <h5>${festivals[0].title}</h5>
 <p>${festivals[0].startdate} - ${festivals[0].enddate}<br>${festivals[0].place}</p>
 </div>
-`)
+`);
     for (let i = 1; i < 5; i++) {
         upcommingSlideElem.append(`
 <div class="carousel-item">
@@ -35,10 +39,11 @@ const upcommingSlide = async () => {
     <h5>${festivals[i].title}</h5>
 <p>${festivals[i].startdate} - ${festivals[i].enddate}<br>${festivals[i].place}</p>
 </div>
-`)
+`);
     }
-}
+};
 
+// BEST 축제 섹션을 설정하는 함수
 const bestFestival = async () => {
     let festivals = await fetchFestival();
     festivals.sort((a, b) => b.like - a.like);
@@ -59,8 +64,9 @@ const bestFestival = async () => {
         </div>
         `);
     });
-}
+};
 
+// BEST 축제 모달을 표시하는 함수
 const showBestModal = async (id) => {
     const festivals = await fetchFestival();
     const festival = festivals.find(festival => festival.id === id);
@@ -117,14 +123,14 @@ const showBestModal = async (id) => {
         </table>
     `);
     $('#bestModal').modal('show');
-}
+};
 
+// 초기화 및 선택 옵션 설정 함수
 const findFestivalInit = async () => {
     const festivals = await fetchFestival();
     const festivalSidoElem = $("#festivalSido");
     const festivalGunguElem = $("#festivalGungu");
     const festivalType = $("#festivalType");
-    const festivalStartDate = $("#festivalStartDate");
     const sido = [], gungu = [], type = [];
 
     festivals.forEach(festival => {
@@ -146,22 +152,38 @@ const findFestivalInit = async () => {
             festivalType.append(new Option(festival.type, festival.type));
         }
     });
-}
 
+    // 드롭다운 변경 시 자동으로 검색 실행 및 지도 반영
+    $("#festivalSido").change(function () {
+        const selectedSido = $(this).val();
+        highlightRegion(selectedSido);
+        loadFestivals();
+    });
+
+    $("#festivalGungu, #festivalType").change(loadFestivals);
+};
+
+// 날짜 입력 형식을 YYYY-MM-DD로 변환하는 함수
 const dateWithHyphenConverter = (target) => {
     target.value = target.value.replace(/\D/g, '').replace(/(\d{4})(\d{2})(\d{2})/, '$1-$2-$3');
-}
+};
 
-let currentPage = 1;
-const itemsPerPage = 5;
+// 전역 변수 추가
+let currentFestivals = [];
 
-const displayFestivals = (festivals, page) => {
+// 축제 목록을 표시하는 함수
+const displayFestivals = (page) => {
     const startIndex = (page - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
-    const paginatedFestivals = festivals.slice(startIndex, endIndex);
+    const paginatedFestivals = currentFestivals.slice(startIndex, endIndex);
 
-    const tableBody = $("table tbody");
+    const tableBody = $("#findFestival tbody");
     tableBody.empty();
+
+    if (paginatedFestivals.length === 0) {
+        tableBody.append("<tr><td colspan='6'>조건에 충족하는 축제가 없습니다</td></tr>");
+        return;
+    }
 
     paginatedFestivals.forEach(festival => {
         tableBody.append(`
@@ -177,53 +199,114 @@ const displayFestivals = (festivals, page) => {
     });
 
     // 이전, 다음 버튼 활성화/비활성화
-    if (startIndex > 0) {
-        $(".btn-previous").prop("disabled", false);
-    } else {
-        $(".btn-previous").prop("disabled", true);
-    }
+    $(".btn-previous").prop("disabled", page === 1);
+    $(".btn-next").prop("disabled", endIndex >= currentFestivals.length);
+};
 
-    if (endIndex < festivals.length) {
-        $(".btn-next").prop("disabled", false);
-    } else {
-        $(".btn-next").prop("disabled", true);
-    }
-}
-
+// 축제를 로드하는 함수
 const loadFestivals = async () => {
     let festivals = await fetchFestival();
     const festivalSido = $("#festivalSido").val();
     const festivalGungu = $("#festivalGungu").val();
     const festivalType = $("#festivalType").val();
     const festivalStartDate = $("#festivalStartDate").val() || today;
+    const festivalTitle = $("#festivalTitle").val().toLowerCase();
 
     // 조건에 맞는 축제 필터링
-    festivals = festivals.filter(festival => {
-        return (!festivalSido || festival.sido === festivalSido) &&
-            (!festivalGungu || festival.gungu === festivalGungu) &&
-            (!festivalType || festival.type === festivalType) &&
-            festival.startdate >= festivalStartDate;
+    currentFestivals = festivals.filter(festival => {
+        return (!festivalSido || festival.sido === festivalSido) && (!festivalGungu || festival.gungu === festivalGungu) && (!festivalType || festival.type === festivalType) && festival.startdate >= festivalStartDate && (!festivalTitle || festival.title.toLowerCase().includes(festivalTitle));
     });
 
     // 날짜 순으로 정렬
-    festivals.sort((a, b) => new Date(a.startdate) - new Date(b.startdate));
+    currentFestivals.sort((a, b) => new Date(a.startdate) - new Date(b.startdate));
 
-    // 첫 페이지의 축제 목록을 표시
-    displayFestivals(festivals, currentPage);
+    // 현재 페이지 초기화
+    currentPage = 1;
+
+    // 축제 목록을 표시
+    displayFestivals(currentPage);
 
     // 이전 버튼 클릭 이벤트
     $(".btn-previous").off("click").on("click", () => {
         if (currentPage > 1) {
             currentPage--;
-            displayFestivals(festivals, currentPage);
+            displayFestivals(currentPage);
         }
     });
 
     // 다음 버튼 클릭 이벤트
     $(".btn-next").off("click").on("click", () => {
-        if ((currentPage * itemsPerPage) < festivals.length) {
+        if ((currentPage * itemsPerPage) < currentFestivals.length) {
             currentPage++;
-            displayFestivals(festivals, currentPage);
+            displayFestivals(currentPage);
         }
     });
+};
+
+// 지도에서 해당 지역을 하이라이트하는 함수
+const highlightRegion = (regionName) => {
+    const svgDoc = document.querySelector('object').contentDocument;
+
+    // 지역 이름과 ID 매핑에서 선택한 지역을 찾음
+    const regionId = Object.keys(nameMapping).find(key => nameMapping[key] === regionName);
+    if (!regionId) return;
+
+    const region = svgDoc.getElementById(regionId);
+
+    if (previousRegion) {
+        previousRegion.style.fill = ''; // 이전 지역을 원래 색상으로 복원
+    }
+
+    region.style.fill = '#e74c3c'; // 선택된 지역을 하이라이트
+    previousRegion = region; // 현재 선택된 지역을 저장
+};
+
+// SVG 파일이 로드된 후 이벤트를 적용하는 함수
+function applyClickEvents() {
+    const svgDoc = document.querySelector('object').contentDocument;
+
+    // 모든 path 요소에 이벤트 리스너를 추가
+    const regions = svgDoc.querySelectorAll('path');
+    regions.forEach(function (region) {
+        region.addEventListener('click', function () {
+            // 이전에 클릭된 지역이 있다면 원래 색상으로 되돌림
+            if (previousRegion) {
+                previousRegion.style.fill = ''; // 기본 색상으로 복원
+            }
+
+            // 현재 클릭된 지역을 하이라이트
+            region.style.fill = '#e74c3c'; // 하이라이트 색상
+
+            // 광역자치 단체명을 설정
+            const regionName = nameMapping[region.id];
+            $("#festivalSido").val(regionName);
+
+            // 자동으로 검색 실행
+            loadFestivals();
+
+            // 현재 클릭된 지역을 이전 지역으로 저장
+            previousRegion = region;
+        });
+    });
 }
+
+const nameMapping = {
+    KR11: "서울",
+    KR26: "부산",
+    KR27: "대구",
+    KR28: "인천",
+    KR29: "광주",
+    KR30: "대전",
+    KR31: "울산",
+    KR50: "세종",
+    KR41: "경기",
+    KR42: "강원",
+    KR43: "충북",
+    KR44: "충남",
+    KR45: "전북",
+    KR46: "전남",
+    KR47: "경북",
+    KR48: "경남",
+    KR49: "제주",
+};
+

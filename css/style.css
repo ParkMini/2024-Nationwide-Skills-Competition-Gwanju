@@ -145,3 +145,7 @@ input[name="authModalToggle"] {
     overflow: hidden;
     white-space: nowrap;
 }
+
+#KR26 {
+    fill: #e74c3c; /* 마우스를 올렸을 때 색상 */
+}

@@ -189,11 +189,12 @@
                 <option value="">축제유형</option>
             </select>
         </div>
-        <input type="text" id="festivalStartDate" class="form-control" placeholder="축제 시작일" oninput="dateWithHyphenConverter(this)" maxlength="10">
+        <input type="text" id="festivalStartDate" class="form-control" placeholder="축제 시작일"
+               oninput="dateWithHyphenConverter(this)" maxlength="10">
         <input id="festivalTitle" class="form-control me-2" type="search" placeholder="축제 명" aria-label="Search">
         <button class="btn btn-outline-success w-25" type="submit" onclick="loadFestivals()">검색</button>
     </div>
-    <img src="./2024%20제59회%20전국기능경기대회%20과제출제(광주)_2/선수제공파일/maps/kr.svg" alt="남한" class="w-25">
+    <object data="./2024%20제59회%20전국기능경기대회%20과제출제(광주)_2/선수제공파일/maps/kr.svg" type="image/svg+xml"></object>
     <table class="table w-50 m-auto">
         <thead>
         <tr>
@@ -208,8 +209,8 @@
         <tbody>
         </tbody>
     </table>
-    <button class="btn btn-secondary">이전</button>
-    <button class="btn btn-secondary">다음</button>
+    <button class="btn btn-secondary btn-previous">이전</button>
+    <button class="btn btn-secondary btn-next">다음</button>
 </div>
 
 <hr class="m-5">
@@ -308,5 +309,6 @@
         bestFestival();
         findFestivalInit();
     });
+    $('object').on('load', applyClickEvents);
 </script>
 </html>
