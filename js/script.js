@@ -1,3 +1,62 @@
+// 달력 설정 함수
+const setupCalendar = async (year, month) => {
+    const festivals = await fetchFestival();
+    const calendarBody = $("#calendar_body");
+    const firstDay = new Date(year, month, 1).getDay();
+    const lastDate = new Date(year, month + 1, 0).getDate();
+    const currentMonthFestivals = festivals.filter(festival => {
+        const festivalDate = new Date(festival.startdate);
+        return festivalDate.getFullYear() === year && festivalDate.getMonth() === month;
+    });
+
+    // 달력 초기화
+    calendarBody.empty();
+
+    // 날짜 표시
+    let dayCount = 1;
+    for (let i = 0; i < 6; i++) {
+        const row = $("<tr></tr>");
+        for (let j = 0; j < 7; j++) {
+            const cell = $("<td><span class='day'></span></td>");
+            if (i === 0 && j < firstDay || dayCount > lastDate) {
+                row.append(cell);
+            } else {
+                const daySpan = cell.find(".day");
+                daySpan.text(dayCount);
+                
+                const festivalsOnThisDay = currentMonthFestivals.filter(festival => new Date(festival.startdate).getDate() === dayCount);
+                festivalsOnThisDay.forEach(festival => {
+                    const festivalP = $(`<p class="festival bg-primary text-white">${festival.title}</p>`);
+                    festivalP.click(() => showBestModal(festival.id));
+                    cell.append(festivalP);
+                });
+
+                row.append(cell);
+                dayCount++;
+            }
+        }
+        calendarBody.append(row);
+    }
+
+    // 달력 상단 제목 설정
+    $("#calendar_month").text(`${year}년 ${month + 1}월`);
+};
+
+// 이전, 다음 버튼 클릭 이벤트
+$("#prevMonthBtn").click(() => {
+    const currentMonthText = $("#calendar_month").text();
+    const currentYear = parseInt(currentMonthText.split("년")[0].trim());
+    const currentMonth = parseInt(currentMonthText.split("년")[1].trim().replace("월", "")) - 1;
+    setupCalendar(currentYear, currentMonth - 1);
+});
+
+$("#nextMonthBtn").click(() => {
+    const currentMonthText = $("#calendar_month").text();
+    const currentYear = parseInt(currentMonthText.split("년")[0].trim());
+    const currentMonth = parseInt(currentMonthText.split("년")[1].trim().replace("월", "")) - 1;
+    setupCalendar(currentYear, currentMonth + 1);
+});
+
 // 축제 데이터를 가져오는 함수
 const fetchFestival = async () => {
     const response = await fetch("./B_Module/api/festivals.json");
@@ -12,7 +71,6 @@ const getFestivalFromStartDate = async (startDate) => {
     return upcomingFestivals;
 };
 
-/** 전역 변수 */
 // 오늘 날짜
 const today = new Date().toISOString().split("T")[0];
 let currentPage = 1;
@@ -309,4 +367,3 @@ const nameMapping = {
     KR48: "경남",
     KR49: "제주",
 };
-
