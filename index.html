@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
-        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./2024%20제59회%20전국기능경기대회%20과제출제(광주)_2/bootstrap-5.3.3-dist/css/bootstrap.css">
@@ -12,246 +12,247 @@
 </head>
 
 <body id="top">
-    <header>
-        <nav class="navbar navbar-expand-lg bg-body-tertiary navbar bg-dark border-bottom border-body ">
-            <input type="radio" name="headerToggle" id="headerToggleOpen">
-            <input type="radio" name="headerToggle" id="headerToggleClose" checked>
-            <div class="container-fluid">
-                <a class="navbar-brand" href="#"><img src="./logo.png" alt="로고 이미지" width="100px"></a>
-                <label for="headerToggleOpen" id="headerToggleOpenBtn" class="navbar-toggler" type="button">
-                    <span class="navbar-toggler-icon"></span>
-                </label>
-                <label for="headerToggleClose" id="headerToggleCloseBtn" class="navbar-toggler" type="button">
-                    <span class="navbar-toggler-icon"></span>
-                </label>
-                <div class="navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Up comming 축제</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">BEST 축제</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">축제 찾기</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">이달의 축제</a>
-                        </li>
-                    </ul>
-                    <ul class="navbar-nav mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">마이페이지</a>
-                        </li>
-                        <li class="nav-item nav-link active">
-                            <label for="authModalToggleLogin">로그인</label>
-                        </li>
-                        <li class="nav-item nav-link active">
-                            <label for="authModalToggleRegister">회원가입</label>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
-
-    <!-- 로그인&회원가입 모달 토글 -->
-    <input type="radio" name="authModalToggle" id="authModalToggleLogin">
-    <input type="radio" name="authModalToggle" id="authModalToggleRegister">
-    <input type="radio" name="authModalToggle" id="authModalToggleClose" checked>
-    <!-- 로그인 모달 -->
-    <div class="modal fade show" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-modal="true"
-        role="dialog">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="loginModalLabel">로그인</h1>
-                    <label for="authModalToggleClose" class="btn-close"></label>
-                </div>
-                <form>
-                    <div class="modal-body">
-                        <div class="mb-3">
-                            <label for="loginId" class="form-label">아이디</label>
-                            <input type="text" class="form-control" id="loginId" name="username">
-                        </div>
-                        <div class="mb-3">
-                            <label for="loginPassword" class="form-label">비밀번호</label>
-                            <input type="password" class="form-control" id="loginPassword" name="password">
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-primary">로그인</button>
-                    </div>
-                </form>
+<header>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary navbar bg-dark border-bottom border-body ">
+        <input type="radio" name="headerToggle" id="headerToggleOpen">
+        <input type="radio" name="headerToggle" id="headerToggleClose" checked>
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#"><img src="./logo.png" alt="로고 이미지" width="100px"></a>
+            <label for="headerToggleOpen" id="headerToggleOpenBtn" class="navbar-toggler" type="button">
+                <span class="navbar-toggler-icon"></span>
+            </label>
+            <label for="headerToggleClose" id="headerToggleCloseBtn" class="navbar-toggler" type="button">
+                <span class="navbar-toggler-icon"></span>
+            </label>
+            <div class="navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Up comming 축제</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">BEST 축제</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">축제 찾기</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">이달의 축제</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">마이페이지</a>
+                    </li>
+                    <li class="nav-item nav-link active">
+                        <label for="authModalToggleLogin">로그인</label>
+                    </li>
+                    <li class="nav-item nav-link active">
+                        <label for="authModalToggleRegister">회원가입</label>
+                    </li>
+                </ul>
             </div>
         </div>
-    </div>
-    <!-- 회원가입 모달 -->
-    <div class="modal fade show" id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel" aria-modal="true"
-        role="dialog">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="registerModalLabel">회원가입</h1>
-                    <label for="authModalToggleClose" class="btn-close"></label>
-                </div>
-                <form>
-                    <div class="modal-body">
-                        <div class="mb-3">
-                            <label for="registerName" class="form-label">이름</label>
-                            <input type="text" class="form-control" id="registerName" name="username">
-                        </div>
-                        <div class="mb-3">
-                            <label for="registerId" class="form-label">아이디</label>
-                            <input type="text" class="form-control" id="registerId" name="username">
-                        </div>
-                        <div class="mb-3">
-                            <label for="registerPassword" class="form-label">비밀번호</label>
-                            <input type="password" class="form-control" id="registerPassword" name="password">
-                        </div>
-                        <div class="mb-3">
-                            <label for="registerPassword2" class="form-label">비밀번호 확인</label>
-                            <input type="password" class="form-control" id="registerPassword2" name="password">
-                        </div>
-                        <div class="mb-3">
-                            <label for="registerCaptcha" class="form-label">당신은 로봇이 아닌 사람입니까?</label>
-                            <img src="./captcha.png" alt="캡차 이미지">
-                            <input type="text" class="form-control" id="registerCaptcha" name="captcha">
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-primary">회원가입</button>
-                    </div>
-                </form>
+    </nav>
+</header>
+
+<!-- 로그인&회원가입 모달 토글 -->
+<input type="radio" name="authModalToggle" id="authModalToggleLogin">
+<input type="radio" name="authModalToggle" id="authModalToggleRegister">
+<input type="radio" name="authModalToggle" id="authModalToggleClose" checked>
+<!-- 로그인 모달 -->
+<div class="modal fade show" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-modal="true"
+     role="dialog">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="loginModalLabel">로그인</h1>
+                <label for="authModalToggleClose" class="btn-close"></label>
             </div>
-        </div>
-    </div>
-
-    <!-- Up comming 축제 섹션 -->
-    <div id="upcommingSlide" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
-        <div class="carousel-indicators">
-            <button type="button" data-bs-target="#upcommingSlide" data-bs-slide-to="0" class="active"
-                aria-current="true" aria-label="Slide 1"></button>
-            <button type="button" data-bs-target="#upcommingSlide" data-bs-slide-to="1" aria-label="Slide 2"></button>
-            <button type="button" data-bs-target="#upcommingSlide" data-bs-slide-to="2" aria-label="Slide 3"></button>
-            <button type="button" data-bs-target="#upcommingSlide" data-bs-slide-to="3" aria-label="Slide 4"></button>
-            <button type="button" data-bs-target="#upcommingSlide" data-bs-slide-to="4" aria-label="Slide 5"></button>
-        </div>
-        <div class="carousel-inner">
-        </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#upcommingSlide" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#upcommingSlide" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
-    </div>
-
-    <!-- BEST 축제 섹션 -->
-    <h1 id="bestFestivalTitle">BEST 축제 섹션</h1>
-    <div id="bestFestival"></div>
-
-    <div class="modal fade" id="bestModal" tabindex="-1" aria-labelledby="bestModalTitle" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="bestModalTitle">Modal title</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body" id="bestModalBody">
+            <form>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="loginId" class="form-label">아이디</label>
+                        <input type="text" class="form-control" id="loginId" name="username">
+                    </div>
+                    <div class="mb-3">
+                        <label for="loginPassword" class="form-label">비밀번호</label>
+                        <input type="password" class="form-control" id="loginPassword" name="password">
+                    </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-success">좋아요</button>
-                    <button type="button" class="btn btn-danger">싫어요</button>
-                    <button type="button" class="btn btn-primary">내 여행 일정에 추가</button>
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+                    <button type="button" class="btn btn-primary">로그인</button>
                 </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- 회원가입 모달 -->
+<div class="modal fade show" id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel" aria-modal="true"
+     role="dialog">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="registerModalLabel">회원가입</h1>
+                <label for="authModalToggleClose" class="btn-close"></label>
+            </div>
+            <form id="registerForm">
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="registerName" class="form-label">이름</label>
+                        <input type="text" class="form-control" id="registerName" name="username" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="registerId" class="form-label">아이디</label>
+                        <input type="text" class="form-control" id="registerId" name="userid" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="registerPassword" class="form-label">비밀번호</label>
+                        <input type="password" class="form-control" id="registerPassword" name="password" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="registerPassword2" class="form-label">비밀번호 확인</label>
+                        <input type="password" class="form-control" id="registerPassword2" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="registerCaptcha" class="form-label">당신은 로봇이 아닌 사람입니까?</label>
+                        <button type="button" id="refreshCaptcha" class="btn btn-secondary">새로고침</button>
+                        <img id="captchaImage" src="./api/regist" alt="캡차 이미지">
+                        <input type="text" class="form-control" id="registerCaptcha" name="captcha" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">회원가입</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Up comming 축제 섹션 -->
+<div id="upcommingSlide" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
+    <div class="carousel-indicators">
+        <button type="button" data-bs-target="#upcommingSlide" data-bs-slide-to="0" class="active"
+                aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#upcommingSlide" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#upcommingSlide" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        <button type="button" data-bs-target="#upcommingSlide" data-bs-slide-to="3" aria-label="Slide 4"></button>
+        <button type="button" data-bs-target="#upcommingSlide" data-bs-slide-to="4" aria-label="Slide 5"></button>
+    </div>
+    <div class="carousel-inner">
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#upcommingSlide" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#upcommingSlide" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
+
+<!-- BEST 축제 섹션 -->
+<h1 id="bestFestivalTitle">BEST 축제 섹션</h1>
+<div id="bestFestival"></div>
+
+<div class="modal fade" id="bestModal" tabindex="-1" aria-labelledby="bestModalTitle" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="bestModalTitle">Modal title</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" id="bestModalBody">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success">좋아요</button>
+                <button type="button" class="btn btn-danger">싫어요</button>
+                <button type="button" class="btn btn-primary">내 여행 일정에 추가</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
             </div>
         </div>
     </div>
+</div>
 
-    <!-- 축제 찾기 섹션 -->
-    <div id="findFestival" class="mt-5 text-center">
-        <h1 class="text-center">축제 찾기</h1>
-        <div class="d-flex w-75 m-auto" role="search">
-            <div class="dropdown">
-                <select id="festivalSido" class="btn btn-secondary dropdown-toggle">
-                    <option value="">광역자치 단체명</option>
-                </select>
-            </div>
-            <div class="dropdown">
-                <select id="festivalGungu" class="btn btn-secondary dropdown-toggle">
-                    <option value="">기초자치 단체명</option>
-                </select>
-            </div>
-            <div class="dropdown">
-                <select id="festivalType" class="btn btn-secondary dropdown-toggle">
-                    <option value="">축제유형</option>
-                </select>
-            </div>
-            <input type="text" id="festivalStartDate" class="form-control" placeholder="축제 시작일"
-                oninput="dateWithHyphenConverter(this)" maxlength="10">
-            <input id="festivalTitle" class="form-control me-2" type="search" placeholder="축제 명" aria-label="Search">
-            <button class="btn btn-outline-success w-25" type="submit" onclick="loadFestivals()">검색</button>
+<!-- 축제 찾기 섹션 -->
+<div id="findFestival" class="mt-5 text-center">
+    <h1 class="text-center">축제 찾기</h1>
+    <div class="d-flex w-75 m-auto" role="search">
+        <div class="dropdown">
+            <select id="festivalSido" class="btn btn-secondary dropdown-toggle">
+                <option value="">광역자치 단체명</option>
+            </select>
         </div>
-        <object data="./2024%20제59회%20전국기능경기대회%20과제출제(광주)_2/선수제공파일/maps/kr.svg" type="image/svg+xml"></object>
-        <table class="table w-50 m-auto">
-            <thead>
-                <tr>
-                    <th scope="col">광역자치단체명</th>
-                    <th scope="col">기초자치단체명</th>
-                    <th scope="col">축제명</th>
-                    <th scope="col">축제유형</th>
-                    <th scope="col">개최기간</th>
-                    <th scope="col">더보기</th>
-                </tr>
-            </thead>
-            <tbody>
-            </tbody>
-        </table>
-        <button class="btn btn-secondary btn-previous">이전</button>
-        <button class="btn btn-secondary btn-next">다음</button>
-    </div>
-
-    <hr class="m-5">
-
-    <!-- 이달의 축제 영역 -->
-    <div id="festivalOfTheMonth" class="text-center mt-5">
-        <h1>이달의 축제</h1>
-        <h2 id="calendar_month">2024년 8월</h2>
-        <button id="prevMonthBtn" class="btn btn-secondary">이전 달</button>
-        <button id="nextMonthBtn" class="btn btn-secondary">다음 달</button>
-        <table id="calendar" class="m-auto table w-75">
-            <tr>
-                <th>일</th>
-                <th>월</th>
-                <th>화</th>
-                <th>수</th>
-                <th>목</th>
-                <th>금</th>
-                <th>토</th>
-            </tr>
-            <tbody id="calendar_body">
-            </tbody>
-        </table>
-    </div>
-
-    <footer>
-        <img src="./logo.png" alt="로고" width="128">
-        <p>Copyright : (C)Korea Cultural Festival Potal 2024 All rights reserved.</p>
-        <div id="social">
-            <a href="#"><img src="./call.png" alt="휴대폰"></a>
-            <a href="#"><img src="./message.png" alt="메시지"></a>
-            <a href="#"><img src="./feedback.png" alt="피드백"></a>
+        <div class="dropdown">
+            <select id="festivalGungu" class="btn btn-secondary dropdown-toggle">
+                <option value="">기초자치 단체명</option>
+            </select>
         </div>
-    </footer>
+        <div class="dropdown">
+            <select id="festivalType" class="btn btn-secondary dropdown-toggle">
+                <option value="">축제유형</option>
+            </select>
+        </div>
+        <input type="text" id="festivalStartDate" class="form-control" placeholder="축제 시작일"
+               oninput="dateWithHyphenConverter(this)" maxlength="10">
+        <input id="festivalTitle" class="form-control me-2" type="search" placeholder="축제 명" aria-label="Search">
+        <button class="btn btn-outline-success w-25" type="submit" onclick="loadFestivals()">검색</button>
+    </div>
+    <object data="./2024%20제59회%20전국기능경기대회%20과제출제(광주)_2/선수제공파일/maps/kr.svg" type="image/svg+xml"></object>
+    <table class="table w-50 m-auto">
+        <thead>
+        <tr>
+            <th scope="col">광역자치단체명</th>
+            <th scope="col">기초자치단체명</th>
+            <th scope="col">축제명</th>
+            <th scope="col">축제유형</th>
+            <th scope="col">개최기간</th>
+            <th scope="col">더보기</th>
+        </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+    <button class="btn btn-secondary btn-previous">이전</button>
+    <button class="btn btn-secondary btn-next">다음</button>
+</div>
 
-    <!-- TOP 버튼 -->
-    <a href="#top">
-        <div id="topBtn">↑</div>
-    </a>
+<hr class="m-5">
+
+<!-- 이달의 축제 영역 -->
+<div id="festivalOfTheMonth" class="text-center mt-5">
+    <h1>이달의 축제</h1>
+    <h2 id="calendar_month">2024년 8월</h2>
+    <button id="prevMonthBtn" class="btn btn-secondary">이전 달</button>
+    <button id="nextMonthBtn" class="btn btn-secondary">다음 달</button>
+    <table id="calendar" class="m-auto table w-75">
+        <tr>
+            <th>일</th>
+            <th>월</th>
+            <th>화</th>
+            <th>수</th>
+            <th>목</th>
+            <th>금</th>
+            <th>토</th>
+        </tr>
+        <tbody id="calendar_body">
+        </tbody>
+    </table>
+</div>
+
+<footer>
+    <img src="./logo.png" alt="로고" width="128">
+    <p>Copyright : (C)Korea Cultural Festival Potal 2024 All rights reserved.</p>
+    <div id="social">
+        <a href="#"><img src="./call.png" alt="휴대폰"></a>
+        <a href="#"><img src="./message.png" alt="메시지"></a>
+        <a href="#"><img src="./feedback.png" alt="피드백"></a>
+    </div>
+</footer>
+
+<!-- TOP 버튼 -->
+<a href="#top">
+    <div id="topBtn">↑</div>
+</a>
 
 </body>
 <script src="./js/jquery-3.7.1.min.js"></script>
@@ -263,6 +264,7 @@
         bestFestival();
         findFestivalInit();
         setupCalendar(new Date().getFullYear(), new Date().getMonth());
+        setupRegisterForm();
     });
     $('object').on('load', applyClickEvents);
 </script>

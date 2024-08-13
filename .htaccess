@@ -1,0 +1,2 @@
+RewriteEngine On
+RewriteRule ^C_Module/api(/.*)?$ /router.php [L,QSA]

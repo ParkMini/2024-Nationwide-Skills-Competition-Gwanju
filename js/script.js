@@ -23,7 +23,7 @@ const setupCalendar = async (year, month) => {
             } else {
                 const daySpan = cell.find(".day");
                 daySpan.text(dayCount);
-                
+
                 const festivalsOnThisDay = currentMonthFestivals.filter(festival => new Date(festival.startdate).getDate() === dayCount);
                 festivalsOnThisDay.forEach(festival => {
                     const festivalP = $(`<p class="festival bg-primary text-white">${festival.title}</p>`);
@@ -366,4 +366,52 @@ const nameMapping = {
     KR47: "경북",
     KR48: "경남",
     KR49: "제주",
+};
+
+// 회원가입 처리 함수
+const setupRegisterForm = () => {
+    // CAPTCHA 새로고침
+    $('#refreshCaptcha').click(function () {
+        $('#captchaImage').attr('src', '/C_Module/api/regist?' + Math.random());
+    });
+
+    // 회원가입 처리
+    $('#registerForm').on('submit', function (e) {
+        e.preventDefault();
+        const password = $('#registerPassword').val();
+        const confirmPassword = $('#registerPassword2').val();
+
+        if (password !== confirmPassword) {
+            alert('비밀번호가 일치하지 않습니다.');
+            return;
+        }
+
+        const data = {
+            username: $('#registerName').val(),
+            userid: $('#registerId').val(),
+            password: password,
+            captcha: $('#registerCaptcha').val()
+        };
+
+        $.ajax({
+            url: '/C_Module/api/regist',
+            method: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify(data),
+            success: function (response) {
+                alert('회원가입이 완료되었습니다.');
+                $('#registerModal').modal('hide');
+                $('#authModalToggleLogin').click();
+                $('#registerForm')[0].reset();  // 폼 초기화
+                $('#captchaImage').attr('src', '/api/regist?' + Math.random()); // CAPTCHA 새로고침
+            },
+            error: function (xhr) {
+                const errorResponse = JSON.parse(xhr.responseText);
+                alert(errorResponse.error || '회원가입 중 오류가 발생했습니다.');
+            }
+        });
+    });
+
+    // 초기 CAPTCHA 로드
+    $('#captchaImage').attr('src', '/C_Module/api/regist');
 };
