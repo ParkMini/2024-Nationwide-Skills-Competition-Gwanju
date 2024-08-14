@@ -1,7 +1,6 @@
 <?php
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // 회원가입 처리
-    $decodeJson = json_decode(file_get_contents('php://input'), true); // JSON 데이터 읽기
     $username = $decodeJson['username'] ?? null;
     $userid = $decodeJson['userid'] ?? null;
     $password = $decodeJson['password'] ?? null;

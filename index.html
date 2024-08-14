@@ -14,17 +14,12 @@
 <body id="top">
 <header>
     <nav class="navbar navbar-expand-lg bg-body-tertiary navbar bg-dark border-bottom border-body ">
-        <input type="radio" name="headerToggle" id="headerToggleOpen">
-        <input type="radio" name="headerToggle" id="headerToggleClose" checked>
         <div class="container-fluid">
             <a class="navbar-brand" href="#"><img src="./logo.png" alt="로고 이미지" width="100px"></a>
-            <label for="headerToggleOpen" id="headerToggleOpenBtn" class="navbar-toggler" type="button">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
-            </label>
-            <label for="headerToggleClose" id="headerToggleCloseBtn" class="navbar-toggler" type="button">
-                <span class="navbar-toggler-icon"></span>
-            </label>
-            <div class="navbar-collapse" id="navbarSupportedContent">
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="#">Up comming 축제</a>
@@ -39,21 +34,14 @@
                         <a class="nav-link active" aria-current="page" href="#">이달의 축제</a>
                     </li>
                 </ul>
-                <ul class="navbar-nav mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">마이페이지</a>
-                    </li>
-                    <li class="nav-item nav-link active">
-                        <label for="authModalToggleLogin">로그인</label>
-                    </li>
-                    <li class="nav-item nav-link active">
-                        <label for="authModalToggleRegister">회원가입</label>
-                    </li>
+                <ul class="navbar-nav mb-2 mb-lg-0" id="authMenu">
+                    <!-- 오른쪽 메뉴 (토큰 여부에 따라 변경됨) -->
                 </ul>
             </div>
         </div>
     </nav>
 </header>
+
 
 <!-- 로그인&회원가입 모달 토글 -->
 <input type="radio" name="authModalToggle" id="authModalToggleLogin">
@@ -68,7 +56,7 @@
                 <h1 class="modal-title fs-5" id="loginModalLabel">로그인</h1>
                 <label for="authModalToggleClose" class="btn-close"></label>
             </div>
-            <form>
+            <form id="loginForm">
                 <div class="modal-body">
                     <div class="mb-3">
                         <label for="loginId" class="form-label">아이디</label>
@@ -80,7 +68,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary">로그인</button>
+                    <button type="submit" class="btn btn-primary">로그인</button>
                 </div>
             </form>
         </div>
@@ -116,7 +104,7 @@
                     <div class="mb-3">
                         <label for="registerCaptcha" class="form-label">당신은 로봇이 아닌 사람입니까?</label>
                         <button type="button" id="refreshCaptcha" class="btn btn-secondary">새로고침</button>
-                        <img id="captchaImage" src="./api/regist" alt="캡차 이미지">
+                        <img id="captchaImage" src="./C_Module/api/regist" alt="캡차 이미지">
                         <input type="text" class="form-control" id="registerCaptcha" name="captcha" required>
                     </div>
                 </div>
@@ -265,6 +253,8 @@
         findFestivalInit();
         setupCalendar(new Date().getFullYear(), new Date().getMonth());
         setupRegisterForm();
+        setupLoginForm();
+        checkTokenAndSetHeader();
     });
     $('object').on('load', applyClickEvents);
 </script>

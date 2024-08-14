@@ -16,10 +16,13 @@ if (isset($resource[1]) && $resource[1] === 'C_Module') {
         case 'login':
             include './C_Module/api/login.php';
             break;
-        // 여기에 다른 API 엔드포인트들을 추가할 수 있습니다.
-        // case 'logout':
-        //     include './controller/api/logout.php';
-        //     break;
+        case 'validate_token':
+            include './C_Module/api/validate_token.php';
+            break;
+        case 'logout':
+            include './C_Module/api/logout.php';
+            break;
+
         default:
             http_response_code(400);
             echo json_encode(['error' => '잘못된 접근입니다.']);

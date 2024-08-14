@@ -403,7 +403,7 @@ const setupRegisterForm = () => {
                 $('#registerModal').modal('hide');
                 $('#authModalToggleLogin').click();
                 $('#registerForm')[0].reset();  // 폼 초기화
-                $('#captchaImage').attr('src', '/api/regist?' + Math.random()); // CAPTCHA 새로고침
+                $('#captchaImage').attr('src', './C_Module/api/regist?' + Math.random()); // CAPTCHA 새로고침
             },
             error: function (xhr) {
                 const errorResponse = JSON.parse(xhr.responseText);
@@ -415,3 +415,157 @@ const setupRegisterForm = () => {
     // 초기 CAPTCHA 로드
     $('#captchaImage').attr('src', '/C_Module/api/regist');
 };
+
+// 로그인 폼을 설정하는 함수
+const setupLoginForm = () => {
+    $("#loginForm").on('submit', function (e) {
+        e.preventDefault();
+
+        const userid = $("#loginId").val();
+        const password = $("#loginPassword").val();
+
+        $.ajax({
+            url: "/C_Module/api/login",
+            method: "POST",
+            contentType: "application/json",
+            data: JSON.stringify({
+                userid: userid,
+                password: password,
+            }),
+            success: function (response) {
+                if (response && response.token) {
+                    // 로그인 성공 시 토큰 저장
+                    document.cookie = `userid=${response.userid}; path=/; max-age=2592000`; // 30일간 유지
+                    document.cookie = `username=${response.username}; path=/; max-age=2592000`;
+                    document.cookie = `token=${response.token}; path=/; max-age=2592000`;
+
+                    // 헤더를 로그인 상태로 업데이트
+                    updateHeaderForLoggedInUser(response.username);
+
+                    // 로그인 모달 닫기
+                    $('#loginModal').modal('hide');
+                } else {
+                    alert("아이디 또는 패스워드를 확인하세요.");
+                    $("#loginId").val("");
+                    $("#loginPassword").val("");
+                }
+            },
+            error: function (xhr, status, error) {
+                console.error("로그인 실패:", status, error);
+                alert("서버와의 통신 중 오류가 발생했습니다. 다시 시도해 주세요.");
+            }
+        });
+    });
+};
+
+// 로그인 후 헤더를 업데이트하는 함수
+function updateHeaderForLoggedInUser(username) {
+    const authMenu = $("#authMenu");
+
+    authMenu.html(`
+        <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">마이페이지</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#" id="logout">로그아웃</a>
+        </li>
+    `);
+
+// 로그아웃 버튼 클릭 시 쿠키 삭제 및 헤더 업데이트
+    $("#logout").click(function () {
+        const token = getCookie('token');
+
+        $.ajax({
+            url: "/C_Module/api/logout",
+            method: "POST",
+            contentType: "application/json",
+            data: JSON.stringify({token: token}),
+            success: function (response) {
+                if (response.success) {
+                    // 쿠키 삭제
+                    document.cookie = "token=; path=/; max-age=0";
+                    document.cookie = "userid=; path=/; max-age=0";
+                    document.cookie = "username=; path=/; max-age=0";
+
+                    // 헤더를 로그아웃 상태로 업데이트
+                    setLoginRegisterMenu($("#authMenu"));
+                } else {
+                    console.error("로그아웃 실패:", response.error);
+                    alert("로그아웃 중 오류가 발생했습니다.");
+                }
+            },
+            error: function (xhr, status, error) {
+                console.error("로그아웃 실패:", status, error);
+                alert("서버와의 통신 중 오류가 발생했습니다. 다시 시도해 주세요.");
+            }
+        });
+    });
+
+}
+
+// 로그인, 회원가입 메뉴를 설정하는 함수
+function setLoginRegisterMenu(authMenu) {
+    authMenu.html(`
+        <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#" id="loginLink">로그인</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#" id="registerLink">회원가입</a>
+        </li>
+    `);
+
+    // 동적으로 생성된 로그인, 회원가입 링크에 모달 열기 이벤트 바인딩
+    bindAuthLinkEvents();
+}
+
+// 로그인, 회원가입 링크에 모달 열기 이벤트 바인딩
+function bindAuthLinkEvents() {
+    $(document).on('click', '#loginLink', function (e) {
+        e.preventDefault();
+        $('#loginModal').modal('show');
+    });
+
+    $(document).on('click', '#registerLink', function (e) {
+        e.preventDefault();
+        $('#registerModal').modal('show');
+    });
+}
+
+// 쿠키에서 특정 이름의 값을 가져오는 함수
+function getCookie(name) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(';').shift();
+}
+
+// 쿠키에 token이 있는지 확인하고 헤더의 오른쪽 영역을 설정하는 함수
+function checkTokenAndSetHeader() {
+    const token = getCookie('token');
+    const authMenu = $("#authMenu");
+
+    if (token) {
+        // 토큰이 있는 경우 서버로 검증 요청
+        $.ajax({
+            url: './C_Module/api/validate_token',
+            method: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify({token: token}),
+            success: function (response) {
+                if (response.valid) {
+                    // 유효한 토큰인 경우 마이페이지, 로그아웃을 표시
+                    updateHeaderForLoggedInUser(response.username);
+                } else {
+                    // 유효하지 않은 토큰인 경우 로그인, 회원가입을 표시
+                    setLoginRegisterMenu(authMenu);
+                }
+            },
+            error: function () {
+                // 서버 오류 발생 시 로그인, 회원가입을 표시
+                setLoginRegisterMenu(authMenu);
+            }
+        });
+    } else {
+        // 토큰이 없는 경우 로그인, 회원가입을 표시
+        setLoginRegisterMenu(authMenu);
+    }
+}
