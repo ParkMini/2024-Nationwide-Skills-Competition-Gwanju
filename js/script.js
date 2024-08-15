@@ -464,7 +464,7 @@ function updateHeaderForLoggedInUser(username) {
 
     authMenu.html(`
         <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">마이페이지</a>
+            <a class="nav-link active" aria-current="page" href="./mypage.php">마이페이지</a>
         </li>
         <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="#" id="logout">로그아웃</a>
@@ -489,6 +489,7 @@ function updateHeaderForLoggedInUser(username) {
 
                     // 헤더를 로그아웃 상태로 업데이트
                     setLoginRegisterMenu($("#authMenu"));
+                    window.location.href = "/";
                 } else {
                     console.error("로그아웃 실패:", response.error);
                     alert("로그아웃 중 오류가 발생했습니다.");

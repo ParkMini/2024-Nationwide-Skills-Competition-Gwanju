@@ -22,6 +22,16 @@ if (isset($resource[1]) && $resource[1] === 'C_Module') {
         case 'logout':
             include './C_Module/api/logout.php';
             break;
+        case 'apikey':
+            include './C_Module/api/apikey.php';
+            break;
+        case 'removeapikey':
+            include './C_Module/api/removeapikey.php';
+            break;
+        case 'apikeylist':
+            include './C_Module/api/apikeylist.php';
+            break;
+
 
         default:
             http_response_code(400);

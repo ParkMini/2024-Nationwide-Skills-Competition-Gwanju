@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 'username' => $user['username'],
                 'userid' => $user['userid'],
                 'token' => $newToken,
-                'apikey' => $user['apikey'] ?? null
+                'apikey.php' => $user['apikey.php'] ?? null
             ]);
         } else {
             http_response_code(401);
